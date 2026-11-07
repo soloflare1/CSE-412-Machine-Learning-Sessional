@@ -448,36 +448,59 @@ Expected concept:
 Both predictions should be approximately equal if Gradient Descent has converged properly.
 
 Small differences can occur due to optimization settings and numerical precision.
-
+```
 ## 11. Complete Workflow
-
-Load Dataset
-
-Read homeprices.csv
-
-Data Preprocessing
-
-Fill missing bedrooms values using median
-
-Train Linear Regression
-
-Scikit-learn model
-
-Feature Scaling
-
-StandardScaler
-
-Gradient Descent
-
-Calculate cost, gradients and update parameters
-
-Predict House Price
-
-Using both models
-
-Compare Predictions
-
-Scikit-learn vs Gradient Descent
+              START
+                |
+                v
+         Load Dataset (CSV)
+                |
+                v
+       Data Preprocessing
+       - Find median of bedrooms
+       - Fill missing (NaN) values
+                |
+                v
+       Separate Input and Output
+       - X = area, bedrooms, age
+       - y = price
+                |
+                v
+       --------------------------------
+       |                              |
+       v                              v
+  Scikit-learn Model             Feature Scaling
+  LinearRegression()             StandardScaler()
+       |                              |
+       v                              v
+  reg.fit(X, y)                X_scaled = scaled X
+       |                              |
+       v                              v
+  Learn weights & bias         Apply Gradient Descent
+       |                       - Initialize weights, bias
+       |                       - Predict values
+       |                       - Calculate cost (MSE)
+       |                       - Calculate gradients
+       |                       - Update weights & bias
+       |                       - Repeat iterations
+       |                              |
+       v                              v
+  Predict house price          Learn best weights & bias
+       |                              |
+       |                              v
+       |                       Scale new house data
+       |                              |
+       |                              v
+       |                       Predict house price
+       |                              |
+       --------------+---------------
+                     |
+                     v
+             Compare Predictions
+                     |
+                     v
+                    END
+```
 
 ## 12. Important Lab Viva Questions
 
